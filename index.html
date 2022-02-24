@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      @font-face {
+        font-family: starwars;
+        src: url('etc/fonts/starwars.woff');
+      }
+      
+      * {
+        box-sizing: border-box;
+      }
+      
+      body {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        background-color: #161a2e;
+      }
+
+      canvas {
+        display: block;
+        margin: 0 auto;
+        height: 540px;
+        width: 960px;
+      }
+
+      #gameContent {
+        display: flex;
+        flex-direction: column-reverse;
+        margin: 0 auto;
+        height: 540px;
+        width: 960px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+      }
+
+      #controls {
+        display: flex;
+        justify-content: center;
+        height: 65px;
+      }
+
+      #questionContainer {
+        width: 50%;
+      }
+
+      #questionContainer {
+        margin: 0 auto;
+      }
+
+      #answerButtons {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      #question {
+        padding: 10px 0;
+        text-align: center;
+        color: cyan;
+        letter-spacing: 5px;
+        font-family: 'arial';
+        font-weight: bold;
+        font-size: 25px;
+      }
+
+      #startButton,
+      #nextButton {
+        width: 400px;
+      }
+
+      .button {
+        width: 40%;
+      }
+
+      .hide {
+        display: none;
+      }
+
+      .button {
+        padding: 10px 0;
+        position: relative;
+        color: cyan;
+        letter-spacing: 5px;
+        border: 3px solid cyan;
+        font-size: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        transition: .5s;
+        border-radius:100px;
+        background: #161a2e;
+        margin: 10px;
+      }
+      
+      .button:hover:enabled {
+        box-shadow: 0 5px 10px 0 cyan inset, 0 0px 10px 0 cyan, 0 0px 10px 0 cyan inset, 0 5px 10px 0 cyan;
+        text-shadow: 0 0 5px cyan;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="game">
+      <canvas id="canvas"></canvas>
+      <div id="gameContent">
+        <div id="gameContentContainer">
+          <div id="questionContainer" class="hide">
+            <div id="question">Question</div>
+            <div id="answerButtons">
+            </div>
+          </div>
+          <div id="controls">
+            <button id="startButton" class="button">Start</button>
+            <button id="nextButton" class="button hide">Next</button>
+          </div>
+      </div>
+    </div>
+    
+    <script src="script.js"></script>
+  </body>
+</html>
