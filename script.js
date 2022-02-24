@@ -45,8 +45,45 @@ function drawSprite(img, sX, sY, sW, sH, dX, dY, dW, dH) {
    
 }
 
+let ball = {x:613,y:-100,speed:.01,t:0,radius:20}
+let points = [
+   {x:ball.x,y:ball.y},
+   {x:613,y:87},
+   {x:500,y:172},
+   {x:500,y:175}
+]
 
+function drawDeathStar() {
+   ctx.fillStyle = 'black';
+   ctx.beginPath();
+   //ctx.arc(ball.x,ball.y,ball.radius,0,Math.PI * 2, false)
+   ctx.drawImage(images.deathstar, ball.x, ball.y, 115, 115)
+   ctx.fill()
+}
 
+function moveBallInBezierCurve() {
+   let [p0, p1, p2, p3] = points
+   let cx = 3 * (p1.x - p0.x)
+   let bx = 3 * (p2.x - p1.x) - cx
+   let ax = p3.x - p0.x - cx - bx
+
+   let cy = 3 * (p1.y - p0.y)
+   let by = 3 * (p2.y - p1.y) - cy
+   let ay = p3.y - p0.y - cy - by
+
+   let t = ball.t
+   ball.t += ball.speed
+   let xt = ax * (t*t*t) + bx*(t*t) + cx*t + p0.x
+   let yt = ay * (t*t*t) + by*(t*t) + cy*t + p0.y
+
+   if (ball.t > 1) {
+      ball.t = 1
+   }
+
+   ball.x = xt
+   ball.y = yt
+   drawDeathStar()
+}
 
 
 //Aimation loop
@@ -56,8 +93,9 @@ function animate() {
    ctx.clearRect(0, 0, canvas.width, canvas.height)
 
    ctx.drawImage(images.background1, 0, 0, canvas.width, canvas.height)
-   ctx.drawImage(images.deathstar, 500, 175, 115, 115)
+   moveBallInBezierCurve()
    
+   ctx.drawImage(images.background2, 0, 0, canvas.width, canvas.height)
 
    /************************** */
    //načtení funkce pro vykreslení obrázku
@@ -74,7 +112,7 @@ function animate() {
 
    /************************ */
 
-   ctx.drawImage(images.background2, 0, 0, canvas.width, canvas.height)
+   
    ctx.drawImage(images.background3, 0, 0, canvas.width, canvas.height)
    ctx.drawImage(images.background4, 0, 0, canvas.width, canvas.height)
 
@@ -167,8 +205,10 @@ nextButton.addEventListener('click', () => {
 function startGame() {
    console.log('Started')
    startButton.classList.add('hide')
+   rightAnswersBox.innerHTML = 'Skóre'
    shuffledQuestions = questions.sort(() => Math.random() - .5)
    currentQuestionIndex = 0
+   correctAnswers = 0
    questionContainerElement.classList.remove('hide')
    setNextQuestion()
 }
@@ -216,7 +256,7 @@ function selectAnswer(e) {
    
    if(shuffledQuestions.length > currentQuestionIndex + 1) {
       nextButton.classList.remove('hide')
-   } else {
+   } if (shuffledQuestions.length <= currentQuestionIndex + 1)  {
       startButton.innerText = 'Začít znovu'
       startButton.classList.remove('hide')
    }
@@ -311,8 +351,8 @@ const questions = [
       question: 'Kdo vymyslel jméno Jar Jar?',
       answers: [
          {text: 'George Lucas', correct: false},
-         {text: 'Harrison Ford', correct: true},
-         {text: 'Syn George Lucase', correct: false},
+         {text: 'Harrison Ford', correct: false},
+         {text: 'Syn George Lucase', correct: true},
          {text: 'Carrie Fisher', correct: false},
       ]
    },
@@ -338,7 +378,7 @@ const questions = [
       question: 'Jak získala Leia titul princezna?',
       answers: [
          {text: 'Svatbou s princem', correct: false},
-         {text: 'Státním převratem na Alderanu', correct: true},
+         {text: 'Státním převratem na Alderanu', correct: false},
          {text: 'Přidělila jí ho matka', correct: false},
          {text: 'Díky adoptivnímu otci', correct: true},
       ]
