@@ -155,6 +155,8 @@ const questionElement = document.querySelector('#question')
 const answerButtonsElement = document.querySelector('#answerButtons')
 let shuffledQuestions, currentQuestionIndex
 let gameContent = document.querySelector('#gameContent')
+const rightAnswersBox = document.querySelector('#rightAnswers')
+let correctAnswers = 0
 
 startButton.addEventListener('click', startGame)
 nextButton.addEventListener('click', () => {
@@ -199,26 +201,39 @@ function resetState() {
 
 function selectAnswer(e) {
    const selectedButton = e.target
-   const correct = selectedButton.dataset.correct
+   
+   /*const correct = selectedButton.dataset.correct*/
    const buttons = document.querySelectorAll('#answerButtons .button')
-   setStatusClass(document.body, correct)
+   /*rightAnswersCounter(document.body, correct)
    Array.from(answerButtonsElement.children).forEach(button => {
-      setStatusClass(button, button.dataset.correct)
-   })
+      rightAnswersCounter(button, button.dataset.correct)
+   })*/
    //nextButton.classList.remove('hide')
 
    buttons.forEach((button) => {
       button.disabled = true
    })
+   
    if(shuffledQuestions.length > currentQuestionIndex + 1) {
       nextButton.classList.remove('hide')
    } else {
       startButton.innerText = 'Začít znovu'
       startButton.classList.remove('hide')
    }
+
+   //console.log(e.target.getAttribute('data-correct'))
+   if(selectedButton.getAttribute('data-correct') == 'true') {
+      correctAnswers += 1
+      rightAnswersBox.innerHTML = 'Skóre\n' + correctAnswers + '/' + questions.length
+      console.log(correctAnswers)
+      this.classList.add('correct')
+   } else {
+      this.classList.add('wrong')
+      rightAnswersBox.innerHTML = 'Skóre\n' + correctAnswers + '/' + questions.length
+   }
    
 }
-
+/*
 function setStatusClass(element, correct) {
    clearStatusClass(element)
    if(correct) {
@@ -234,7 +249,7 @@ function clearStatusClass(element) {
    element.classList.remove('wrong')
 
 }
-
+*/
 
 /*Questions & answers*/
 const questions = [

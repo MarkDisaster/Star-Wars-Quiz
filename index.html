@@ -78,6 +78,21 @@
         width: 400px;
       }
 
+      #rightAnswers {
+        width: 100px;
+        height: 100px;
+        position: fixed;
+        left: 950px;
+        top: 420px;
+
+        color: cyan;
+        letter-spacing: 5px;
+        font-family: 'arial';
+        font-weight: bold;
+        font-size: 15px;
+        text-align: right;
+      }
+
       .button {
         width: 40%;
       }
@@ -105,6 +120,14 @@
         box-shadow: 0 5px 10px 0 cyan inset, 0 0px 10px 0 cyan, 0 0px 10px 0 cyan inset, 0 5px 10px 0 cyan;
         text-shadow: 0 0 5px cyan;
       }
+      
+      .correct {
+        background-color:#2ea533;
+      }
+
+      .wrong {
+        background-color: #d30000;
+      }
     </style>
   </head>
   <body>
@@ -112,6 +135,7 @@
       <canvas id="canvas"></canvas>
       <div id="gameContent">
         <div id="gameContentContainer">
+          <div id="rightAnswers">Skóre</div>
           <div id="questionContainer" class="hide">
             <div id="question">Question</div>
             <div id="answerButtons">
