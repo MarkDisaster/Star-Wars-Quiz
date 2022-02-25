@@ -66,11 +66,15 @@
       #question {
         padding: 10px 0;
         text-align: center;
-        color: cyan;
+        color: #ffffff;
         letter-spacing: 5px;
         font-family: 'arial';
         font-weight: bold;
         font-size: 25px;
+      }
+
+      #questionSpan {
+        background-color: #008585b0;
       }
 
       #startButton,
@@ -112,7 +116,7 @@
         font-weight: bold;
         transition: .5s;
         border-radius:100px;
-        background: #161a2e;
+        background: #161a2ec2;
         margin: 10px;
       }
       
@@ -137,13 +141,13 @@
         <div id="gameContentContainer">
           <div id="rightAnswers"></div>
           <div id="questionContainer" class="hide">
-            <div id="question">Question</div>
+            <div id="question"><span id="questionSpan">Question</span></div>
             <div id="answerButtons">
             </div>
           </div>
           <div id="controls">
             <button id="startButton" class="button">Start</button>
-            <button id="nextButton" class="button hide">Next</button>
+            <button id="nextButton" class="button hide">Další</button>
           </div>
       </div>
     </div>

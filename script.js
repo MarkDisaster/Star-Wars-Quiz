@@ -141,7 +141,7 @@ function animate() {
       
    }
 
-   if (playerX <= 0) {
+   if (playerX <= 0 - 150) {
       playerX = 860;
       console.log('něco se děje..')
    }
@@ -189,7 +189,7 @@ function writeText(txt,x,y) {
 const startButton = document.querySelector('#startButton')
 const nextButton = document.querySelector('#nextButton')
 const questionContainerElement = document.querySelector('#questionContainer')
-const questionElement = document.querySelector('#question')
+const questionElement = document.querySelector('#questionSpan')
 const answerButtonsElement = document.querySelector('#answerButtons')
 let shuffledQuestions, currentQuestionIndex
 let gameContent = document.querySelector('#gameContent')
