@@ -1,4 +1,4 @@
 ﻿# Star-Wars-Quiz
-JavaScript kvíz
+JavaScript quiz
 
 JavaScript Canvas test
